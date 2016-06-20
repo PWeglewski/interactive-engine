@@ -6,7 +6,6 @@ in vec3 toLightVector;
 in float pass_isSelected;
 
 out vec4 out_Color;
-out vec4 color;
 
 uniform sampler2D textureSampler;
 uniform vec3 lightColour;
@@ -26,6 +25,8 @@ void main(void){
             vec3 diffuse = brightness * lightColour;
 
             out_Color = vec4(diffuse, 1.0) * texture(textureSampler, pass_textureCoords);
-            color=pickingColor;
+
+            // filling with solid color
+            out_Color = vec4(1.0,1.0,1.0,1.0);
     }
 }
