@@ -44,17 +44,17 @@ public class Renderer {
     }
 
     public void render(Scene scene, StaticShader staticShader) {
-        for (Entity entity : scene.getEntities()) {
-            for (Group group : entity.getModel().getGroups()) {
-                render(entity, group, staticShader, scene.getEntities().indexOf(entity), true);
-            }
-        }
-        GL11.glFlush();
-        GL11.glFinish();
-
-        GL11.glPixelStorei(GL11.GL_UNPACK_ALIGNMENT, 1);
-
-        mousePicker.update();
+//        for (Entity entity : scene.getEntities()) {
+//            for (Group group : entity.getModel().getGroups()) {
+//                render(entity, group, staticShader, scene.getEntities().indexOf(entity), true);
+//            }
+//        }
+//        GL11.glFlush();
+//        GL11.glFinish();
+//
+//        GL11.glPixelStorei(GL11.GL_UNPACK_ALIGNMENT, 1);
+//
+//        mousePicker.update();
 
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 
@@ -93,7 +93,7 @@ public class Renderer {
         staticShader.loadTransformationMatrix(resultMatrix4f);
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, group.getMaterial().getTextureVaoId());
+//        GL11.glBindTexture(GL11.GL_TEXTURE_2D, group.getMaterial().getTextureVaoId());
         GL11.glDrawElements(GL11.GL_TRIANGLES, group.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
         GL20.glDisableVertexAttribArray(0);
         GL20.glDisableVertexAttribArray(1);

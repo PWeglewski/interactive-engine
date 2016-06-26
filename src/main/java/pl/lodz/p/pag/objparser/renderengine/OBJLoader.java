@@ -15,7 +15,8 @@ public class OBJLoader {
     public static void loadObj(ObjParser objParser, Loader loader) {
         for (Model model : objParser.getModels()) {
             for (Group group : model.getGroups()) {
-                group.getMaterial().setTextureVaoId(loader.loadTexture(group.getMaterial().getTextureFileName()));
+                // No textures
+//                group.getMaterial().setTextureVaoId(loader.loadTexture(group.getMaterial().getTextureFileName()));
 
                 int verticesNumber = findMaxVertexIndex(group.getFaces());
                 int[] indicesArray = new int[group.getFaces().size() * 3];
@@ -28,6 +29,9 @@ public class OBJLoader {
                 List<Vector3f> vertices = model.getVertices();
                 int verticesArrayIterator = 0;
                 for (int i = 0; i < verticesNumber; i++) {
+                    if(i==54777){
+                        System.out.println("Janusz");
+                    }
                     Vector3f vertex = vertices.get(i);
                     verticesArray[i * 3] = vertex.getX();
                     verticesArrayIterator++;
@@ -41,11 +45,15 @@ public class OBJLoader {
                 for (List<int[]> face : group.getFaces()) {
                     for (int[] vertexIndex : face) {
                         int currentVertexIndex = vertexIndex[0] - 1;
+                        if(indicesArrayIterator==552){
+                            System.out.println("Janusz");
+                        }
                         indicesArray[indicesArrayIterator] = currentVertexIndex;
 
-                        Vector2f textureCoordinates = model.getTextureCoordinates().get(vertexIndex[1] - 1);
-                        textureArray[currentVertexIndex * 2] = textureCoordinates.getX();
-                        textureArray[currentVertexIndex * 2 + 1] = textureCoordinates.getY();
+                        // No textures
+//                        Vector2f textureCoordinates = model.getTextureCoordinates().get(vertexIndex[1] - 1);
+                        textureArray[currentVertexIndex * 2] = 0;
+                        textureArray[currentVertexIndex * 2 + 1] = 0;
 
                         Vector3f normal = model.getNormals().get(vertexIndex[2] - 1);
                         normalsArray[currentVertexIndex * 3] = normal.getX();
